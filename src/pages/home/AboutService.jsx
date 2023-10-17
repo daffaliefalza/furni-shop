@@ -3,9 +3,9 @@ import checklist from "../../assets/checklist.png";
 
 const AboutService = () => {
   return (
-    <section className=" mt-[10rem] w-[95%] mx-auto border border-red-500 ">
+    <section className=" mt-[10rem] w-[95%] mx-auto  ">
       <div className="container ">
-        <div className="flex flex-col md:flex-row-reverse border md:justify-center md:items-center md:gap-[3rem]">
+        <div className="flex flex-col md:flex-row-reverse md:justify-center md:items-center md:gap-[3rem]">
           <div>
             <h2 className="text-[#23262F] font-semibold text-[24px]">
               We Create Your Home More Aestetic
