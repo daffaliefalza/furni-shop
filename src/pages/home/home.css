@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Raleway:wght@300;400;500&family=Saira:wght@400;600&display=swap");
+
+:root {
+  --ff-inter: "Inter", sans-serif;
+  --ff-raleway: "Raleway", sans-serif;
+  --ff-saira: "Saira", sans-serif;
+}
+
+body {
+  font-family: var(--ff-saira) !important;
+}
+
+#shop-now {
+  background-color: rgba(226, 226, 226, 0.4);
+  backdrop-filter: blur;
+}

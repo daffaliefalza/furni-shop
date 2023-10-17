@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1200px !important;
+  margin-inline: auto !important;
+  width: 95%;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
