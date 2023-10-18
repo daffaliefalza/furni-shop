@@ -7,7 +7,7 @@ import image4 from "../../assets/about-store4.png";
 const AboutStore = () => {
   return (
     <section className="mt-[8rem] w-[95%] mx-auto">
-      <div className="flex items-center mb-5">
+      <div className="flex items-center mb-5 gap-5">
         <h2 className="font-semibold text-[24px] text-[#23262F]">
           New In Store Now
         </h2>
