@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ff-inter: "Inter", sans-serif;
+  --ff-raleway: "Raleway", sans-serif;
+  --ff-saira: "Saira", sans-serif;
+}
+
 *,
 ::before,
 ::after {
@@ -23,4 +29,26 @@ body {
 img {
   object-fit: cover;
   max-width: 100%;
+}
+
+#grid-store {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr;
+  width: 1000px !important;
+}
+
+/* footer components */
+
+#footer-grid-wrapper {
+  margin: 5rem 0;
+}
+
+#footer-grid-wrapper h5 {
+  font-family: var(--ff-raleway);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+#footer-grid-wrapper a {
+  font-family: var(--ff-inter);
 }

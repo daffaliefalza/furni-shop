@@ -2,7 +2,7 @@ const Box = () => {
   return (
     <div
       id="box-wrapper"
-      className="bg-[#286F6C] absolute bottom-[-100px] left-[50%] translate-x-[-50%] w-[80%] mx-auto rounded-[20px] py-10 px-5 grid grid-cols-2 gap-5 md:grid md:grid-cols-4"
+      className="bg-[#286F6C] container absolute bottom-[-100px] left-[50%] translate-x-[-50%] w-[80%] mx-auto rounded-[20px] py-10 px-5 grid grid-cols-2 gap-5 md:grid md:grid-cols-4"
     >
       <div className="border-r-[1px] border-white">
         <p className="flex flex-col items-center ">

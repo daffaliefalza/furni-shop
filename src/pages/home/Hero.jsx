@@ -14,6 +14,7 @@ const Hero = () => {
         review, nor game plan who’s the goto
       </p>
       <Link
+        to={"/products"}
         id="shop-now"
         className="mt-[30px] text-white rounded-[10px] inline-block px-[80px]  py-[16px] md:mt-[65px]"
       >

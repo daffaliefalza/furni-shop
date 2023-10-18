@@ -5,10 +5,16 @@ import instagramIcon from "../assets/instagram.png";
 const Footer = () => {
   return (
     <footer className="bg-[#23262F] text-white ">
-      <div className="container">
-        <div id="footer-header" className="py-6">
+      <div className="container ">
+        <div
+          id="footer-header"
+          className="py-6 md:flex md:justify-between md:items-center md:border-b-[1px] md:border-white"
+        >
           <h3 className="font-bold text-[24px]">FurniShop</h3>
-          <div id="social-media-footer" className="flex justify-around mt-7">
+          <div
+            id="social-media-footer"
+            className="flex justify-around mt-7 md:flex md:items-center md:justify-center md:gap-5 md:mt-0"
+          >
             <img src={instagramIcon} alt="" className="cursor-pointer" />
             <img src={facebookicon} alt="" />
             <img src={facebookicon} alt="" />
@@ -16,7 +22,10 @@ const Footer = () => {
             <img src={facebookicon} alt="" />
           </div>
         </div>
-        <div id="footer-grid-wrapper" className="grid grid-cols-2 gap-10 mt-7">
+        <div
+          id="footer-grid-wrapper"
+          className="grid grid-cols-2 gap-10 mt-7 md:grid-cols-5 md:leading-[2.2]"
+        >
           <div>
             <h5 className="mb-4">Our Products</h5>
             <ul>

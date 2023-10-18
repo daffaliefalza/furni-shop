@@ -15,7 +15,7 @@ const Contact = () => {
           <input
             type="email"
             placeholder="Your email address"
-            className="py-[0.8rem] px-[2rem] mr-3 rounded-sm"
+            className="py-[0.8rem] px-[2rem] mr-3 rounded-sm text-black"
           />
           <button className="bg-[#23262F] text-white py-3 px-5 rounded-md">
             Shop Now
