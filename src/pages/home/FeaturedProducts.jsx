@@ -2,8 +2,12 @@ import product1 from "../../assets/product1.png";
 import product2 from "../../assets/product2.png";
 import product3 from "../../assets/product3.png";
 import product4 from "../../assets/product4.png";
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 const FeaturedProducts = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="w-[95%] mx-auto mt-[8rem]">
       <div className="container">
@@ -86,12 +90,12 @@ const FeaturedProducts = () => {
             </div>
           </div>
         </div>
-        <Link
-          to={"/products"}
+        <button
           className="w-full bg-[#286F6C] text-white my-5 p-2 rounded-md md:w-[200px] md:mx-auto block md:my-10 text-center"
+          onClick={() => navigate("/products")}
         >
           All Products
-        </Link>
+        </button>
       </div>
     </section>
   );
