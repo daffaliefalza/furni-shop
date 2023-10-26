@@ -4,7 +4,6 @@ import product3 from "../../assets/product3.png";
 import product4 from "../../assets/product4.png";
 import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 const FeaturedProducts = () => {
   const navigate = useNavigate();
 

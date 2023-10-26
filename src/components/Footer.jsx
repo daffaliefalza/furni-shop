@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import facebookicon from "../assets/facebook.png";
 import instagramIcon from "../assets/instagram.png";
+import twitterIcon from "../assets/twitter.png";
 
 const Footer = () => {
   return (
@@ -15,11 +16,33 @@ const Footer = () => {
             id="social-media-footer"
             className="flex justify-around mt-7 md:flex md:items-center md:justify-center md:gap-5 md:mt-0"
           >
-            <img src={instagramIcon} alt="" className="cursor-pointer" />
-            <img src={facebookicon} alt="" />
-            <img src={facebookicon} alt="" />
-            <img src={facebookicon} alt="" />
-            <img src={facebookicon} alt="" />
+            <img
+              src={instagramIcon}
+              alt=""
+              className="cursor-pointer w-5 "
+              style={{
+                filter:
+                  "invert(100%) sepia(100%) saturate(1%) hue-rotate(198deg) brightness(101%) contrast(101%)",
+              }}
+            />
+            <img
+              src={facebookicon}
+              alt=""
+              className="cursor-pointer  w-5"
+              style={{
+                filter:
+                  "invert(100%) sepia(100%) saturate(1%) hue-rotate(198deg) brightness(101%) contrast(101%)",
+              }}
+            />
+            <img
+              src={twitterIcon}
+              alt=""
+              className="cursor-pointer  w-5"
+              style={{
+                filter:
+                  "invert(100%) sepia(100%) saturate(1%) hue-rotate(198deg) brightness(101%) contrast(101%)",
+              }}
+            />
           </div>
         </div>
         <div

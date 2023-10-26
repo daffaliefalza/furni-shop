@@ -19,8 +19,9 @@ const Testimonial = () => {
             </div>
           </div>
           <p className="text-[#23262F] my-[1.5rem] ">
-            “They have a perfect touch for make something so professional
-            ,interest and useful for a lot of people .”
+            “They have a perfect touch for making something so professional,
+            <br />
+            interesting and useful for a lot of people .”
           </p>
           <button className="mr-8 bg-gray-200  rounded-full w-[30px] h-[30px]">
             🡠
