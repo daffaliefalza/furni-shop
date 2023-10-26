@@ -10,7 +10,7 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 import Navbar from "../../components/Navbar";
 
-const API_KEY = "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";
+const API_KEY = "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";
 const systemMessage = {
   role: "system",
   content:
