@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1);
 
   const fetchData = async () => {
     try {
@@ -20,7 +19,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
 
   if (!product) {
     return (
@@ -31,16 +30,6 @@ const SingleProduct = () => {
   }
 
   const { name, price, description, category } = product;
-
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
 
   return (
     <>
@@ -61,28 +50,15 @@ const SingleProduct = () => {
             <h1 className="text-[39px] text-[#102A42] font-bold mb-4">
               {name}
             </h1>
-            <p className="text-gray-600 mb-4">${price}</p>
+            <p className="text-gray-600 mb-4">
+              {(price / 100).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 2,
+              })}
+            </p>
             <p className="text-gray-700 mb-4">{description}</p>
             <p className="text-gray-700 mb-4">Category: {category}</p>
-            {/* <div className="flex items-center mb-4">
-              <button
-                className="bg-[#E5E5E5] text-black font-bold py-2 px-3 rounded-l w-12 inline-block"
-                onClick={decrementQuantity}
-              >
-                -
-              </button>
-              <span className="text-gray-700 text-lg px-3">{quantity}</span>
-              <button
-                className="bg-[#E5E5E5] text-black font-bold py-2 px-3 rounded-r w-12 inline-block"
-                onClick={incrementQuantity}
-              >
-                +
-              </button>
-            </div>
-
-            <button className="bg-[#286F6C] hover:bg-[#266f5c] text-white font-bold py-2 px-4 rounded">
-              Add to Cart
-            </button> */}
           </div>
         </div>
       </div>
