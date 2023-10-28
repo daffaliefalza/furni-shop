@@ -85,7 +85,14 @@ export default function Cart({ showModal, toggle }) {
                       </div>
                     </div>
                   </td>
-                  <td className="py-2  mr-2">${item.price}</td>
+                  <td className="py-2  mr-2">
+                    {" "}
+                    {(item.price / 100).toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                      minimumFractionDigits: 2,
+                    })}
+                  </td>
                   <td className="py-2">
                     <div className="flex items-center md:flex md:items-center">
                       <button
@@ -152,7 +159,14 @@ export default function Cart({ showModal, toggle }) {
         {cartItems.length > 0 && (
           <div className="container flex justify-end">
             <div className=" text-end">
-              <h1 className="text-lg font-bold ">Total: ${getCartTotal()}</h1>
+              <h1 className="text-lg font-bold">
+                Total:{" "}
+                {(getCartTotal() / 100).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                })}
+              </h1>
               <button className="bg-[#286F6C] text-white py-2 px-12 rounded">
                 Checkout
               </button>

@@ -91,7 +91,10 @@ const FeaturedProducts = () => {
         </div>
         <button
           className="w-full bg-[#286F6C] text-white my-5 p-2 rounded-md md:w-[200px] md:mx-auto block md:my-10 text-center"
-          onClick={() => navigate("/products")}
+          onClick={() => {
+            navigate("/products");
+            window.scrollTo(0, 0);
+          }}
         >
           All Products
         </button>

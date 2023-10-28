@@ -15,6 +15,7 @@ const Hero = () => {
       </p>
       <Link
         to={"/products"}
+        onClick={() => window.scrollTo(0, 0)}
         id="shop-now"
         className="mt-[30px] text-white rounded-[10px] inline-block px-[80px]  py-[16px] md:mt-[65px]"
       >

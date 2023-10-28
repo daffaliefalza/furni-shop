@@ -16,7 +16,11 @@ const AboutStore = () => {
             <p className="text-[#23262F]">
               Get the latest items immediately with promo prices
             </p>
-            <Link className="underline mt-2" to={"/products"}>
+            <Link
+              className="underline mt-2"
+              to={"/products"}
+              onClick={() => window.scrollTo(0, 0)}
+            >
               Check All
             </Link>
           </div>

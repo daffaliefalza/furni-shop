@@ -211,7 +211,14 @@ export default function Products() {
                   <h1 className="text-lg font-semibold uppercase">
                     {product.name}
                   </h1>
-                  <p className="mt-2 text-gray-600">${product.price}</p>
+                  <p className="mt-2 text-gray-600">
+                    {" "}
+                    {(product.price / 100).toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
                 </div>
                 <div className="flex items-center justify-center p-2">
                   {!cartItems.find((item) => item.id === product.id) ? (
