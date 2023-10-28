@@ -1,48 +1,49 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems"))
-      : []
-  );
+  const getStoredCartItems = () => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  };
+
+  const [cartItems, setCartItems] = useState(getStoredCartItems);
+
+  const updateCartItems = (updatedItems) => {
+    setCartItems(updatedItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  };
 
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    const updatedCartItems = [...cartItems];
+    const existingItemIndex = updatedCartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
 
-    if (isItemInCart) {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
+    if (existingItemIndex !== -1) {
+      updatedCartItems[existingItemIndex].quantity += 1;
     } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      updatedCartItems.push({ ...item, quantity: 1 });
     }
+
+    updateCartItems(updatedCartItems);
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    const updatedCartItems = cartItems
+      .map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: cartItem.quantity - 1 }
+          : cartItem
+      )
+      .filter((cartItem) => cartItem.quantity > 0);
 
-    if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-    } else {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    }
+    updateCartItems(updatedCartItems);
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    updateCartItems([]);
   };
 
   const getCartTotal = () => {
@@ -51,17 +52,6 @@ export const CartProvider = ({ children }) => {
       0
     );
   };
-
-  useEffect(() => {
-    const data = localStorage.getItem("cartItems");
-    if (data) {
-      setCartItems(JSON.parse(data));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
 
   return (
     <CartContext.Provider
