@@ -21,7 +21,7 @@ function Chatbot() {
   const [messages, setMessages] = useState([
     {
       message:
-        "Hello, This is Furnishop AI Assistant,  Ask me anything related to the furnishop!",
+        "Hello, This is Furnishop AI Assistant,  Ask me anything about furnishop!",
       sentTime: "just now",
       sender: "ChatGPT",
     },
