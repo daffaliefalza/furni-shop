@@ -151,7 +151,6 @@ export default function Cart({ showModal, toggle }) {
             >
               Clear Shopping Cart
             </button>
-            {/* <h1 className="text-lg font-bold">Total: ${getCartTotal()}</h1> */}
           </div>
         ) : (
           <h1 className="text-lg font-bold">Your cart is empty</h1>

@@ -1,71 +1,76 @@
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../../context/cart.jsx";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Cart from "./Cart.jsx";
 import axios from "axios";
 import Navbar from "../../components/Navbar.jsx";
 import ProductHeader from "./ProductHeader.jsx";
 import Footer from "../../components/Footer.jsx";
-import { Link } from "react-router-dom";
+import Filtering from "./Filtering.jsx";
 
 const url = "https://course-api.com/react-store-products/";
 
 export default function Products() {
-  const [showModal, setshowModal] = useState(false);
   const [products, setProducts] = useState([]);
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [companyFilter, setCompanyFilter] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
+  const [company, setCompany] = useState("all");
   const [sortBy, setSortBy] = useState("");
+  const [showModal, setshowModal] = useState(false);
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
 
   const toggle = () => {
     setshowModal(!showModal);
   };
 
-  const fetchData = async () => {
+  const getProducts = async () => {
     try {
       const response = await axios.get(url);
-      let filteredProducts = response.data;
-
-      if (categoryFilter !== "All") {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.category === categoryFilter
-        );
-      }
-
-      if (companyFilter) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.company === companyFilter
-        );
-      }
-
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        filteredProducts = filteredProducts.filter(
-          (product) =>
-            product.name.toLowerCase().includes(query) ||
-            product.category.toLowerCase().includes(query) ||
-            product.company.toLowerCase().includes(query)
-        );
-      }
-
-      if (sortBy === "lowest") {
-        filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (sortBy === "highest") {
-        filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
-      }
-
-      setProducts(filteredProducts);
+      setProducts(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error(error);
     }
   };
 
+  const handleCategoryChange = (selectedCategory) => {
+    setCategory(selectedCategory);
+  };
+  const handleCompanyChange = (selectedCompany) => {
+    setCompany(selectedCompany);
+  };
+
+  const handleSearchChange = (searchTerm) => {
+    setSearch(searchTerm);
+  };
+
+  const handleSortChange = (selectedSortBy) => {
+    setSortBy(selectedSortBy);
+  };
+
+  const sortedProducts = [...products].sort((a, b) => {
+    if (sortBy === "lowest") {
+      return a.price - b.price;
+    } else if (sortBy === "highest") {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
+  const filteredProducts = sortedProducts.filter((product) => {
+    const categoryMatch = category === "all" || product.category === category;
+    const companyMatch = company === "all" || product.company === company;
+    const searchMatch =
+      product.name.toLowerCase().includes(search.toLowerCase()) ||
+      product.description.toLowerCase().includes(search.toLowerCase());
+
+    return categoryMatch && companyMatch && searchMatch;
+  });
+
   useEffect(() => {
-    fetchData();
-  }, [categoryFilter, companyFilter, searchQuery, sortBy]);
+    getProducts();
+  }, []);
 
   const notifyAddedToCart = (item) =>
     toast.success(`${item.name} added to cart!`, {
@@ -102,22 +107,6 @@ export default function Products() {
     notifyRemovedFromCart(product);
   };
 
-  const handleCategoryChange = (e) => {
-    setCategoryFilter(e.target.value);
-  };
-
-  const handleCompanyChange = (e) => {
-    setCompanyFilter(e.target.value);
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSortChange = (e) => {
-    setSortBy(e.target.value);
-  };
-
   return (
     <>
       <Navbar />
@@ -142,63 +131,18 @@ export default function Products() {
           )}
         </div>
         <div id="products-grid">
-          <div className="flex flex-col flex-wrap  mb-4 ">
-            <div id="search-wrapper" className="my-4">
-              <input
-                className="bg-[#F1F5F8]  py-2 w-full md:w-auto px-5 border border-[#9095A0] rounded"
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-            </div>
-
-            <div id="category-wrapper" className="my-4">
-              <h3 className="text-[#2D4459] text-[22px] mb-2">Category</h3>
-              <select
-                value={categoryFilter}
-                onChange={handleCategoryChange}
-                className="py-2 px-3 w-full md:w-56 border border-[#9095A0]"
-              >
-                <option value="All">All Category</option>
-                <option value="office">Office</option>
-                <option value="living room">Living Room</option>
-                <option value="kitchen">Kitchen</option>
-                <option value="bedroom">Bedroom</option>
-                <option value="dining">Dining</option>
-                <option value="kids">Kids</option>
-              </select>
-            </div>
-
-            <div id="company-wrapper" className="my-4">
-              <h3 className="text-[#2D4459] text-[22px] mb-2">Company</h3>
-              <select
-                value={companyFilter}
-                onChange={handleCompanyChange}
-                className="py-2 px-3  w-full md:w-56   border border-[#9095A0]"
-              >
-                <option value="">All Companies</option>
-                <option value="ikea">Ikea</option>
-                <option value="marcos">Marcos</option>
-                <option value="liddy">Liddy</option>
-                <option value="caressa">Caressa</option>
-              </select>
-            </div>
-
-            <div id="sort-wrapper">
-              <h3 className="text-[#2D4459] text-[22px] mb-2">Sort Price</h3>
-              <select value={sortBy} onChange={handleSortChange}>
-                <option value="" defaultValue disabled>
-                  Sort by
-                </option>
-                <option value="lowest">Lowest Price</option>
-                <option value="highest">Highest Price</option>
-              </select>
-            </div>
-          </div>
-
+          <Filtering
+            category={category}
+            company={company}
+            search={search}
+            sortBy={sortBy}
+            onCategoryChange={handleCategoryChange}
+            onCompanyChange={handleCompanyChange}
+            onSearchChange={handleSearchChange}
+            onSortChange={handleSortChange}
+          />
           <div className="md:grid md:grid-cols-3 md:gap-5">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div key={product.id} className="bg-white shadow-md  rounded m-2">
                 <Link to={`/products/${product.id}`}>
                   <img

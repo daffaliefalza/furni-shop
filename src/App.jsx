@@ -6,6 +6,7 @@ import SingleProduct from "./pages/detail-products";
 import Chatbot from "./pages/chatbot";
 import Contact from "./pages/contact";
 import About from "./pages/about";
+
 const App = () => {
   return (
     <BrowserRouter>
