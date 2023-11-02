@@ -15,7 +15,11 @@ const AboutFurniture = () => {
             services
           </p>
         </div>
-        <img src={imageFurniture} className="rounded-md mt-12" />
+        <img
+          src={imageFurniture}
+          alt="about furniture image"
+          className="rounded-md mt-12"
+        />
       </div>
     </section>
   );

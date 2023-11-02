@@ -32,7 +32,7 @@ const AboutStore = () => {
           id="grid-store"
         >
           <div className="relative flex-none ">
-            <img src={image1} alt="" className="h-full " />
+            <img src={image1} alt="about store image" className="h-full " />
             <h4 className="absolute bottom-6 left-[50%] translate-x-[-50%] text-white">
               Chair
             </h4>

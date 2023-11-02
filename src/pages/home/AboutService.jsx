@@ -27,7 +27,11 @@ const AboutService = () => {
             </div>
 
             <div className="flex  gap-3 ">
-              <img src={checklist} alt="" className="w-[23px] h-[23px] " />
+              <img
+                src={checklist}
+                alt="about service image"
+                className="w-[23px] h-[23px] "
+              />
               <div className="flex flex-col justify-center ">
                 <h3 className="font-bold">Development of Furniture Models</h3>
                 <p>
