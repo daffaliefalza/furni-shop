@@ -9,19 +9,21 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 import Navbar from "../../components/Navbar";
+import { FaComment } from "react-icons/fa"; // Import the icon you want to use
 
 const API_KEY = import.meta.env.VITE_OPENAPI_KEY;
 const systemMessage = {
   role: "system",
   content:
-    "Explain all about furniture in e-commerce website and reply with a simple prompt. Also if the user ask a specific question that is related to the furnishop, just say yes we have that product. If user ask do you have sofa, reply it that we have utopia sofa, and leather sofa, and sofa set. If user ask what kind of products does user have, reply it with sofa, table, bedroom, chair,desk, bookshelf. If the user ask a question outside of the scope of furnishop e-commerce website, just reply that you can't answer question that are outside of the furnishop website.",
+    "Explain all about furniture in the e-commerce website and reply with a simple prompt. Also, if the user asks a specific question that is related to the furnishop, just say yes, we have that product. If the user asks, 'Do you have a sofa?' reply that we have Utopia sofa, and leather sofa, and sofa set. If the user asks what kind of products do you have, reply with sofa, table, bedroom, chair, desk, bookshelf. If the user asks a question outside of the scope of the furnishop e-commerce website, just reply that you can't answer questions that are outside of the furnishop website.",
 };
 
 function Chatbot() {
+  const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([
     {
       message:
-        "Hello, This is Furnishop AI Assistant,  Ask me anything about furnishop!",
+        "Hello, This is Furnishop AI Assistant, Ask me anything about furnishop!",
       sentTime: "just now",
       sender: "ChatGPT",
     },
@@ -86,24 +88,22 @@ function Chatbot() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex justify-center items-center bg-gray-100">
-        <div className="w-[450px] h-[550px] bg-white rounded-lg shadow-lg p-8">
-          {" "}
+      <div className="min-h-screen flex justify-center ">
+        <div className="w-[600px] h-[600px] bg-white rounded-lg shadow-lg p-8 ">
           <MainContainer>
             <ChatContainer>
               <MessageList
                 scrollBehavior="smooth"
                 typingIndicator={
                   isTyping ? (
-                    <TypingIndicator content="Furnishop AI is typing" />
+                    <TypingIndicator content="Hey, daffa here. Sorry but the AI feature is unavailable at the moment" />
                   ) : null
                 }
                 className="h-[540px] overflow-y-auto p-4"
               >
-                {" "}
-                {messages.map((message, i) => {
-                  return <Message key={i} model={message} />;
-                })}
+                {messages.map((message, i) => (
+                  <Message key={i} model={message} />
+                ))}
               </MessageList>
               <MessageInput
                 placeholder="Type message here"
@@ -114,6 +114,13 @@ function Chatbot() {
           </MainContainer>
         </div>
       </div>
+
+      {/* <button
+        onClick={() => setShowChat(!showChat)}
+        className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full"
+      > */}
+      {/* <FaComment size={30} /> */}
+      {/* </button> */}
     </>
   );
 }

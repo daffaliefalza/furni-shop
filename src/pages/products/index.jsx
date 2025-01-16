@@ -10,7 +10,7 @@ import ProductHeader from "./ProductHeader.jsx";
 import Footer from "../../components/Footer.jsx";
 import Filtering from "./Filtering.jsx";
 
-const url = "https://course-api.com/react-store-products/";
+const url = "https://678959402c874e66b7d87788.mockapi.io/furniture";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
