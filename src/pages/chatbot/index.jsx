@@ -9,7 +9,6 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 import Navbar from "../../components/Navbar";
-import { FaComment } from "react-icons/fa"; // Import the icon you want to use
 
 const API_KEY = import.meta.env.VITE_OPENAPI_KEY;
 const systemMessage = {
